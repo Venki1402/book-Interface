@@ -17,8 +17,10 @@ public class Book {
         this.genre = genre;
     }
 
+    @Override
     public String toString() {
-        return String.format("%s by %s (%.2f/5) (%d reviews) $%d in %d (%s)", title, author, userRating, reviews, price, year, genre);
+        return String.format("%s by %s (%.2f/5) (%d reviews) $%d in %d (%s)",
+                title, author, userRating, reviews, price, year, genre);
     }
 
     public String getAuthor() {
@@ -75,5 +77,29 @@ public class Book {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public void printDetails() {
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
+        System.out.println("User Rating: " + userRating + "/5");
+        System.out.println("Reviews: " + reviews);
+        System.out.println("Price: $" + price);
+        System.out.println("Year: " + year);
+        System.out.println("Genre: " + genre);
+        System.out.println("------------------------");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Book book = (Book) obj;
+        return title.equals(book.title) && author.equals(book.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return title.hashCode() + author.hashCode();
     }
 }
